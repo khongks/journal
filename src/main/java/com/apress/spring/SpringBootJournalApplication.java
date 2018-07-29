@@ -23,5 +23,21 @@ public class SpringBootJournalApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringBootJournalApplication.class, args);
+        /*
+        SpringApplication app = new SpringApplication(SpringBootJournalApplication.class);
+        app.setBanner(new Banner() {
+          @Override
+          public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
+                out.println(" ____    ____               _____                                         __         _                        ");
+                out.println("|_   \\  /   _|             |_   _|                                       [  |       / \\                      ");
+                out.println("  |   \\/   |    _   __       | |  .--.   __   _   _ .--.  _ .--.   ,--.   | |      / _ \\    _ .--.   _ .--.  ");
+                out.println("  | |\\  /| |   [ \\ [  ]  _   | |/ .'`\\ \\ [ | | | [ `/'`\\][ `.-. | `'_\\ :  | |     / ___ \\  [ '/'`\\ \\[ '/'`\\ \\");
+                out.println(" _| |_\\/_| |_   \\ '/ /  | |__' || \\__. | | \\_/ |, | |     | | | | // | |, | |   _/ /   \\ \\_ | \\__/ | | \\__/ |");
+                out.println("|_____||_____|[\\_:  /   `.____.' '.__.'  '.__.'_/[___]   [___||__]\\'-;__/[___] |____| |____|| ;.__/  | ;.__/ ");
+                out.println("               \\__.'                                                                       [__|     [__|     ");  
+            }
+        });
+        app.run(args);
+        */
     }
 }

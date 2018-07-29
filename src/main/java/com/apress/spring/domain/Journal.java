@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+
 import lombok.Data;
 
 @Entity
@@ -23,26 +24,60 @@ public class Journal {
     private String summary;
 
     @Transient
-    private SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+    private SimpleDateFormat simpleDataFormat = new SimpleDateFormat("MM/dd/yyyy");
 
     public Journal(String title, String summary, String date) throws ParseException {
         this.title = title;
         this.summary = summary;
-        this.created = format.parse(date);
+        this.created = simpleDataFormat.parse(date);
     }
 
     public Journal() {}
 
+    public Long getId() {
+        return this.id;
+    }
+
     public String getTitle() {
         return this.title;
+    }
+
+    /**
+     * @param title the title to set
+     */
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getSummary() {
         return this.summary;
     }
 
+    /**
+     * @param summary the summary to set
+     */
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     public Date getCreated() {
         return this.created;
+    }
+
+    /**
+     * @param created the created to set
+     */
+    public void setCreated(String created) throws ParseException {
+        this.created = simpleDataFormat.parse(created);
+    }
+
+    public JournalTO toJournalTO() {
+        JournalTO journalTO = new JournalTO();
+        journalTO.setId(id);
+        journalTO.setTitle(title);
+        journalTO.setSummary(summary);
+        journalTO.setCreated(simpleDataFormat.format(created));
+        return journalTO;
     }
 
     public String toString() {
@@ -60,6 +95,6 @@ public class Journal {
     }
 
     public String getCreatedAsShort(){
-        return format.format(created);
+        return simpleDataFormat.format(created);
     }
 }
