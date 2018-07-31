@@ -1,5 +1,6 @@
 package com.apress.spring.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.apress.spring.domain.JournalTO;
@@ -18,19 +19,35 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/journals")
 public class JournalController {
 
   @Autowired
-  // JournalRepository repo;
   JournalService service;
 
   @RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
   public ResponseEntity<List<JournalTO>> list() {
     List<JournalTO> journals = service.findAll();
     return new ResponseEntity<List<JournalTO>>(journals, HttpStatus.OK);
+  }
+
+  @RequestMapping(method = RequestMethod.GET, params={"titleSearch"}, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+  public ResponseEntity<List<JournalTO>> findByTitleContaining(@RequestParam String titleSearch) {
+    List<JournalTO> journals = service.findByTitleContaining(titleSearch);
+    return new ResponseEntity<List<JournalTO>>(journals, HttpStatus.OK);
+  }
+
+  @RequestMapping(method = RequestMethod.GET, params={"createdAfter"}, produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
+  public ResponseEntity<List<JournalTO>> findByCreatedAfter(@RequestParam String createdAfter) {
+    try {
+      List<JournalTO> journals = service.findByCreatedAfter(createdAfter);
+      return new ResponseEntity<List<JournalTO>>(journals, HttpStatus.OK);
+    } catch(ParseException pe) {
+      return new ResponseEntity<List<JournalTO>>(HttpStatus.BAD_REQUEST);
+    }
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = { MediaType.APPLICATION_JSON_UTF8_VALUE })
