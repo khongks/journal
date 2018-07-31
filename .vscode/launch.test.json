@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "spring-boot-journal",
+                "projectName": "spring-boot-journal",
+                "workingDirectory": "/Users/khongks/Documents/Dev/spring-boot/spring-boot-journal",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "spring-boot-journal",
+                "projectName": "spring-boot-journal",
+                "workingDirectory": "/Users/khongks/Documents/Dev/spring-boot/spring-boot-journal",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
